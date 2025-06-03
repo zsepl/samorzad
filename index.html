@@ -13,7 +13,8 @@
     }
 
     body {
-      background-color: #f8f8f8;
+      background: url('tlo.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: #333;
     }
 
@@ -22,7 +23,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.9);
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       flex-wrap: wrap;
     }
@@ -37,137 +38,136 @@
       margin-top: 0.5rem;
     }
 
-    main {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-    }
-
-    .tile {
+    .timeline {
       position: relative;
-      overflow: hidden;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: transform 0.3s;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem 0;
     }
 
-    .tile:hover {
-      transform: scale(1.03);
-    }
-
-    .tile img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .caption {
+    .timeline::before {
+      content: '';
       position: absolute;
+      width: 6px;
+      background-color: #FF5722;
+      top: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      width: 100%;
-      text-align: center;
-      padding: 0.5rem;
-      font-size: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
     }
 
-    .details {
-      display: none;
+    .timeline-item {
+      position: relative;
+      width: 50%;
       padding: 2rem;
-      background: white;
-      margin: 0 1rem 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 1;
     }
 
-    .details h2 {
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: white;
+      border: 4px solid #FF5722;
+      top: 2rem;
+      z-index: 2;
+    }
+
+    .timeline-item.left {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item.left::before {
+      right: -8px;
+    }
+
+    .timeline-item.right {
+      left: 50%;
+      text-align: left;
+    }
+
+    .timeline-item.right::before {
+      left: -8px;
+    }
+
+    .timeline-item .label {
+      font-weight: bold;
+      color: #FF5722;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item img {
+      width: 100%;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item p {
       margin-bottom: 1rem;
     }
 
-    .active {
-      display: block;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
+    @media screen and (max-width: 768px) {
+      .timeline::before {
+        left: 30px;
       }
 
-      h1 {
-        font-size: 1.2rem;
+      .timeline-item {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 20px;
+        text-align: left;
       }
 
-      .tile img {
-        height: 150px;
+      .timeline-item.left,
+      .timeline-item.right {
+        left: 0;
       }
 
-      .caption {
-        font-size: 1rem;
-        padding: 0.4rem;
+      .timeline-item::before {
+        left: 15px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="fot.png" alt="Logo Samorządu" class="logo">
+    <img src="logo.png" alt="Logo Samorządu" class="logo">
+    <h1>Samorząd Uczniowski</h1>
   </header>
 
-  <main id="tiles">
-    <div class="tile" data-detail="pomagamy">
+  <section class="timeline">
+    <div class="timeline-item left">
+      <div class="label">Wrzesień</div>
       <img src="pomagamy.jpg" alt="Pomagamy">
-      <div class="caption">Pomagamy</div>
-    </div>
-    <div class="tile" data-detail="organizujemy">
-      <img src="organizujemy.jpg" alt="Organizujemy">
-      <div class="caption">Organizujemy</div>
-    </div>
-    <div class="tile" data-detail="szkolimy">
-      <img src="szkolimy.jpg" alt="Szkolimy się">
-      <div class="caption">Szkolimy się</div>
-    </div>
-    <div class="tile" data-detail="prawa">
-      <img src="prawa.jpg" alt="Prawa ucznia">
-      <div class="caption">Dbamy o wasze prawa</div>
-    </div>
-  </main>
-
-  <section id="details">
-    <div id="pomagamy" class="details">
       <h2>Pomagamy</h2>
       <p>Organizujemy akcje charytatywne, zbiórki i wspieramy społeczność lokalną.</p>
     </div>
-    <div id="organizujemy" class="details">
+    <div class="timeline-item right">
+      <div class="label">Październik</div>
+      <img src="organizujemy.jpg" alt="Organizujemy">
       <h2>Organizujemy</h2>
       <p>Tworzymy wydarzenia szkolne, imprezy integracyjne i konkursy.</p>
     </div>
-    <div id="szkolimy" class="details">
+    <div class="timeline-item left">
+      <div class="label">Listopad</div>
+      <img src="szkolimy.jpg" alt="Szkolimy się">
       <h2>Szkolimy się</h2>
       <p>Uczestniczymy w warsztatach i szkoleniach, aby być jeszcze lepszymi liderami.</p>
     </div>
-    <div id="prawa" class="details">
+    <div class="timeline-item right">
+      <div class="label">Grudzień</div>
+      <img src="prawa.jpg" alt="Dbamy o wasze prawa">
       <h2>Dbamy o wasze prawa</h2>
       <p>Reprezentujemy uczniów, rozmawiamy z dyrekcją i bronimy interesów uczniowskich.</p>
     </div>
   </section>
-
-  <script>
-    const tiles = document.querySelectorAll('.tile');
-    const details = document.querySelectorAll('.details');
-
-    tiles.forEach(tile => {
-      tile.addEventListener('click', () => {
-        const target = tile.getAttribute('data-detail');
-        details.forEach(d => d.classList.remove('active'));
-        document.getElementById(target).classList.add('active');
-        window.scrollTo({ top: document.getElementById(target).offsetTop - 60, behavior: 'smooth' });
-      });
-    });
-  </script>
 </body>
 </html>
