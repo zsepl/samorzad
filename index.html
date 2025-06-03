@@ -73,6 +73,8 @@
       background-color: white;
       border: 4px solid #FF5722;
       top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 2;
     }
 
@@ -81,17 +83,9 @@
       text-align: right;
     }
 
-    .timeline-item.left::before {
-      right: -8px;
-    }
-
     .timeline-item.right {
       left: 50%;
       text-align: left;
-    }
-
-    .timeline-item.right::before {
-      left: -8px;
     }
 
     .timeline-item .label {
@@ -133,14 +127,14 @@
 
       .timeline-item::before {
         left: 15px;
+        transform: none;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Logo Samorządu" class="logo">
-    <h1>Samorząd Uczniowski</h1>
+    <img src="fot.png" alt="Logo Samorządu" class="logo">
   </header>
 
   <section class="timeline">
