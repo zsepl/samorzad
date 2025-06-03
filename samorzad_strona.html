@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samorząd</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      height: 50px;
+      max-width: 100%;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .tile:hover {
+      transform: scale(1.03);
+    }
+
+    .tile img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      width: 100%;
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .details {
+      display: none;
+      padding: 2rem;
+      background: white;
+      margin: 0 1rem 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .details h2 {
+      margin-bottom: 1rem;
+    }
+
+    .active {
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      h1 {
+        font-size: 1.2rem;
+      }
+
+      .tile img {
+        height: 150px;
+      }
+
+      .caption {
+        font-size: 1rem;
+        padding: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="fot.png" alt="Logo Samorządu" class="logo">
+  </header>
+
+  <main id="tiles">
+    <div class="tile" data-detail="pomagamy">
+      <img src="pomagamy.jpg" alt="Pomagamy">
+      <div class="caption">Pomagamy</div>
+    </div>
+    <div class="tile" data-detail="organizujemy">
+      <img src="organizujemy.jpg" alt="Organizujemy">
+      <div class="caption">Organizujemy</div>
+    </div>
+    <div class="tile" data-detail="szkolimy">
+      <img src="szkolimy.jpg" alt="Szkolimy się">
+      <div class="caption">Szkolimy się</div>
+    </div>
+    <div class="tile" data-detail="prawa">
+      <img src="prawa.jpg" alt="Prawa ucznia">
+      <div class="caption">Dbamy o wasze prawa</div>
+    </div>
+  </main>
+
+  <section id="details">
+    <div id="pomagamy" class="details">
+      <h2>Pomagamy</h2>
+      <p>Organizujemy akcje charytatywne, zbiórki i wspieramy społeczność lokalną.</p>
+    </div>
+    <div id="organizujemy" class="details">
+      <h2>Organizujemy</h2>
+      <p>Tworzymy wydarzenia szkolne, imprezy integracyjne i konkursy.</p>
+    </div>
+    <div id="szkolimy" class="details">
+      <h2>Szkolimy się</h2>
+      <p>Uczestniczymy w warsztatach i szkoleniach, aby być jeszcze lepszymi liderami.</p>
+    </div>
+    <div id="prawa" class="details">
+      <h2>Dbamy o wasze prawa</h2>
+      <p>Reprezentujemy uczniów, rozmawiamy z dyrekcją i bronimy interesów uczniowskich.</p>
+    </div>
+  </section>
+
+  <script>
+    const tiles = document.querySelectorAll('.tile');
+    const details = document.querySelectorAll('.details');
+
+    tiles.forEach(tile => {
+      tile.addEventListener('click', () => {
+        const target = tile.getAttribute('data-detail');
+        details.forEach(d => d.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
+        window.scrollTo({ top: document.getElementById(target).offsetTop - 60, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
